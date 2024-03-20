@@ -1,0 +1,23 @@
+name: GitActions-Demo2
+on:
+  push:
+jobs:
+  GitActions-demo-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print event name
+        run: echo "job.triggered.event is ${{ github.event_name }}"
+      - name: Print operating system
+        run: echo "job.running.os is ${{ runner.os }}"
+      - name: Print branch
+        run: echo "job.branch is ${{ github.ref }}"
+      - name: Print repository
+        run: echo "job.repository is ${{ github.repository }}"
+      - name: Print job status
+        run: echo "job.status is ${{ job.status }}."
+      - run: echo "The workflow is code test on the runner."
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: List files on repository
+        run: |
+          ls ${{ github.workspace }}
